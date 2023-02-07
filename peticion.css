@@ -1,0 +1,44 @@
+body{
+  display: flexbox;
+  background: none;
+  align-items: center;
+  justify-content: top;
+}
+
+
+.form {
+  align-items: auto;
+  height: 250px;
+  width: 250px;
+  display: flexbox;
+  margin:  center;
+  
+}
+
+.input-style {
+  margin-top: 5px;
+  padding-top: 5px;
+  align-items: flex-start;
+}
+
+.btn {
+  text-align: center;
+  display: flexbox;
+  height: 30px;
+  width:140px;
+  background:rgb(2, 103, 235);
+  border:1px solid #a39999;
+  border: radius 2px;
+  color: #fff;
+  text-transform:none;
+  font: sans-serif;
+  cursor:pointer;
+  margin: 5px;
+  border-radius: 4px;
+  padding: 5px;
+  margin-left: 0px;
+  margin-top: -3%;
+  content: normal;
+
+}
+  

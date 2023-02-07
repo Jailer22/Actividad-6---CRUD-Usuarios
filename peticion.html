@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="peticion.css">
+    <title>Actividad 6</title>  
+</head>
+<body> 
+
+    <script>
+
+        function Peticion (post,callback){
+
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+        
+                xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                return callback (this.responseText);
+                console.log(respuesta)
+                }
+            });
+
+                xhr.open(post.Tipo, post.host + post.path) //endpoint
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//header
+                xhr.send(post.payload);
+
+        }
+                
+        function limpiar (){
+
+            document.getElementById("cedula").value = ""
+            document.getElementById("nombre").value = ""
+            document.getElementById("apellido").value = ""
+            document.getElementById("direccion").value = ""
+            document.getElementById("edad").value = ""
+            document.getElementById("estado_c").value = ""
+
+        }
+
+
+        function Guardar(){
+
+            var cedula = document.getElementById("cedula").value
+            var nombre = document.getElementById("nombre").value
+            var apellido = document.getElementById("apellido").value
+            var direccion = document.getElementById("direccion").value
+            var edad = document.getElementById("edad").value
+            var estado_c = document.getElementById("estado_c").value
+
+            
+            var data = "cedula=" + cedula + "&nombre=" + nombre + "&apellido=" + apellido + "&direccion=" + direccion + "&edad=" + edad + "&estado_c="+ estado_c + "";
+            var post = {
+                Tipo: "POST",
+                host:"http://localhost:3000",
+                path:"/Actividad6/usuarios/guardar",
+                payload:data}
+
+                Peticion(post,function(respuesta){
+                alert(respuesta)})
+                limpiar()
+
+        }
+
+
+        function Buscar (){
+
+            var data = "cedula=" + cedula + "&nombre=" + nombre + "&apellido=" + apellido + "&direccion=" + direccion + "&edad=" + edad + "&estado_c="+ estado_c + "";
+            var post = {
+                Tipo: "POST",
+                host:"http://localhost:3000",
+                path:"/Actividad6/usuarios/listar",
+                payload:null}
+
+            Peticion(post,function(respuesta){
+                alert(respuesta)
+                limpiar()})
+        
+        }
+
+
+        function Eliminar(){
+
+                var data = "cedula=" + cedula + "&nombre=" + nombre + "&apellido=" + apellido + "&direccion=" + direccion + "&edad=" + edad + "&estado_c="+ estado_c + "";
+                var post = {
+                Tipo: "POST",
+                host:"http://localhost:3000",
+                path:"/Actividad6/usuarios/eliminar",
+                payload:null}
+
+                Peticion(post,function(respuesta){                
+                console.log(respuesta) })
+                limpiar()
+            }
+        
+        
+        function Actualizar(){
+
+            var data = "cedula=" + cedula + "&nombre=" + nombre + "&apellido=" + apellido + "&direccion=" + direccion + "&edad=" + edad + "&estado_c="+ estado_c + "";
+            var post = {
+            Tipo: "POST",
+            host:"http://localhost:3000",
+            path:"/Actividad6/usuarios/modificar",
+            payload:null}
+
+            Peticion(post,function(respuesta){
+            console.log(respuesta)
+            //limpiar()
+        })
+
+        }
+
+</script>
+
+    <div class="form">
+        <input class="input-style" type="text" id="cedula" placeholder="cédula">
+        <input class="input-style" type="text" id="nombre" placeholder="nombre">
+        <input class="input-style" type="text" id="apellido" placeholder="apellido">  
+        <input class="input-style" type="text" id="direccion" placeholder="dirección">
+        <input class="input-style" type="number" id="edad" placeholder="edad">
+        <input class="input-style" type="text" id="estado_c" placeholder="estado">
+    </div>
+        <div class="btn"onclick="Guardar()">Guardar</div> 
+        <br><br>
+        <div class="btn" onclick="Buscar()">Buscar</div>
+        <br><br>
+        <div class="btn" onclick="Actualizar()">Actualizar</div>
+        <br><br>
+        <div class="btn" onclick="Eliminar()">Eliminar</div>
+
+</body>
+</html>
